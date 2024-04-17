@@ -19,8 +19,8 @@ def main():
     N_CLASSES = 14
     BATCH_SIZE = 16
     device = torch.device("cpu")
-    TEACHER_CKPT_PATH = 'model1.pth'
-    STUDENT_CKPT_PATH = 'model1.pth'
+    STUDENT_CKPT_PATH = '../1-EEEA-Net-C2/model1.pth'
+    TEACHER_CKPT_PATH = '../1-EEEA-Net-C2/model1.pth'
     DATA_DIR = '../ChestX-ray14/images-224'
     DT_IMAGE_LIST = '../ChestX-ray14/labels/val_list.txt'
 

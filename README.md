@@ -1,12 +1,6 @@
 
 # DTforCXR8
 
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/eeea-net-an-early-exit-evolutionary-neural/neural-architecture-search-on-cifar-10)](https://paperswithcode.com/sota/neural-architecture-search-on-cifar-10?p=eeea-net-an-early-exit-evolutionary-neural)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/eeea-net-an-early-exit-evolutionary-neural/object-detection-on-pascal-voc-2007)](https://paperswithcode.com/sota/object-detection-on-pascal-voc-2007?p=eeea-net-an-early-exit-evolutionary-neural)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/eeea-net-an-early-exit-evolutionary-neural/semantic-segmentation-on-cityscapes-val)](https://paperswithcode.com/sota/semantic-segmentation-on-cityscapes-val?p=eeea-net-an-early-exit-evolutionary-neural)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/eeea-net-an-early-exit-evolutionary-neural/neural-architecture-search-on-imagenet)](https://paperswithcode.com/sota/neural-architecture-search-on-imagenet?p=eeea-net-an-early-exit-evolutionary-neural)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/eeea-net-an-early-exit-evolutionary-neural/image-classification-on-cifar-100)](https://paperswithcode.com/sota/image-classification-on-cifar-100?p=eeea-net-an-early-exit-evolutionary-neural)
-
 《基于知识蒸馏的轻量化迁移模型在肺部疾病诊断中的应用研究》
 
 《Application of Lightweight Migration Model Based on Knowledge Distillation in the Diagnosis of Lung Diseases》
@@ -15,7 +9,7 @@
 
 🌺在EEEA-Net-C2、OFA-595、Visformer-small和AutoFormerV2-base使用ImageNet_1k的相关内容直接进行10epoch的训练，拿到性能比较好的model.pth
 
-🌻在CheXNet使用预训练好的效果比较好的mode.pth，进行10epoch的训练，拿到性能比较好的model.pth后保存
+🌻在CheXNet使用预训练好的效果比较好的[mode.pth](https://github.com/arnoweng/CheXNet)，进行10epoch的训练，拿到性能比较好的model3.pth后保存
 
 🏵依次拿到上面的模型训练参数model1.pth、model2.pth、model3.pth、model4.pth、model5.pth，进行知识蒸馏，拿到对应的EEEA-Net-C2蒸馏训练参数modeld1.pth、modeld2.pth、modeld3.pth、modeld4.pth、modeld5.pth
 
@@ -23,13 +17,13 @@
 
 ## 1、使用（Usage）
 
-克隆项目到本地（Clone the repository）
+🖼克隆项目到本地（Clone the repository）
 
 ```
 git clone https://github.com/ruiqingyan1/DTforCXR8.git
 ```
 
-配置实验环境（Configuration of experimental environment）
+🖼配置实验环境（Configuration of experimental environment）
 
 ```bash
 conda create -n openmmlab python=3.8
@@ -37,11 +31,11 @@ conda activate openmmlab
 pip install -r requirements.txt
 ```
 
-数据集下载（Download CXR8）
+🖼数据集下载（Download CXR8）
 
-> 数据集中图片文件到./CheXNet-RAY14/images相关目录下，可以参考代码内的
+> ⭕数据集中图片文件到./CheXNet-RAY14/images相关目录下，可以参考代码内的
 >
-> DATA_DIR = '../ChestX-ray14/images'
+> DATA_DIR = '../ChestX-ray14/images'，数据集下载链接如下
 
 NIH提供了数据集下载：[NIH](https://nihcc.app.box.com/v/ChestXray-NIHCC/folder/36938765345)，kaggle提供了数据集下载[NIH](https://www.kaggle.com/datasets/nih-chest-xrays/data/discussion/300917)，可以把12个images文件合并方便操作。
 
@@ -82,13 +76,13 @@ python test-model.py
 
 > The average AUROC is 0.802
 >
-> The AUROC of Atelectasis is 0.824643010142581
+> The AUROC of Atelectasis is 0.825
 >
-> The AUROC of Cardiomegaly is 0.9125871514054655
+> The AUROC of Cardiomegaly is 0.913
 >
-> The AUROC of Effusion is 0.8418948284084464
+> The AUROC of Effusion is 0.842
 >
-> The AUROC of Infiltration is 0.7223178820240355
+> The AUROC of Infiltration is 0.722
 >
 > ...
 
@@ -117,14 +111,18 @@ python train-kd3-model.py
 
 > The average AUROC is 0.837
 >
-> The AUROC of Atelectasis is 0.823643010142581
+> The AUROC of Atelectasis is 0.824
 >
-> The AUROC of Cardiomegaly is 0.9155871514054655
+> The AUROC of Cardiomegaly is 0.916
 >
-> The AUROC of Effusion is 0.8858948284084464
+> The AUROC of Effusion is 0.886
 >
-> The AUROC of Infiltration is 0.7103178820240355
+> The AUROC of Infiltration is 0.710
 >
 > ...
 
 ## 4、结果分析
+
+<img src="/Users/ruiqingyan/Library/Application Support/typora-user-images/image-20240417183241716.png" alt="image-20240417183241716" style="zoom:50%;" />
+
+ChestX-ray14数据集上不同模型的Mean AUC对比来看，在我们的实验中，通过对未蒸馏的基模型和蒸馏后的模型在ChestX-ray14数据集上的性能进行详细比较，我们发现CheXNet作为教师模型，EEEA-Net-C2作为学生模型的知识蒸馏策略表现最为出色。具体而言，未经蒸馏的CheXNet在所有基模型中展现了最高的AUC值（83.8%），表明其具有卓越的疾病分类能力。而在知识蒸馏后，采用CheXNet作为教师模型，EEEA-Net-C2作为学生模型进一步提升了性能，AUC值达到了83.8%，表现出了优化后的模型确实能够接近甚至超越未蒸馏模型的性能。这一结果不仅验证了知识蒸馏技术在提高轻量化模型性能中的有效性，同时也证明了CheXNet和EEEA-Net-C2组合的蒸馏策略在优化模型性能方面具有显著的优势。通过这种方法，我们成功地构建了一个既高效又紧凑的模型，为资源有限的医疗环境提供了一个强大的诊断工具，推动了医疗图像分析技术的应用和发展。此外，其他模型如OFA-595、Visformer-small和AutoFormerV2-base在蒸馏后也显示出了性能的提升，这进一步强调了蒸馏技术对于多种不同架构的模型都有益。
