@@ -97,18 +97,6 @@ def main():
 
 
 def compute_AUCs(gt, pred):
-    """Computes Area Under the Curve (AUC) from prediction scores.
-
-    Args:
-        gt: Pytorch tensor on GPU, shape = [n_samples, n_classes]
-          true binary labels.
-        pred: Pytorch tensor on GPU, shape = [n_samples, n_classes]
-          can either be probability estimates of the positive class,
-          confidence values, or binary decisions.
-
-    Returns:
-        List of AUROCs of all classes.
-    """
     AUROCs = []
     gt_np = gt.cpu().numpy()
     pred_np = pred.cpu().numpy()
@@ -118,23 +106,6 @@ def compute_AUCs(gt, pred):
 
 
 def compute_accuracy_f1(gt, pred, average='macro'):
-    """
-    Computes Accuracy and F1 score from prediction scores.
-
-    Args:
-        gt: Pytorch tensor on GPU, shape = [n_samples, n_classes]
-            true binary labels.
-        pred: Pytorch tensor on GPU, shape = [n_samples, n_classes]
-            can either be probability estimates of the positive class,
-            confidence values, or binary decisions.
-        average: String, [None, 'binary' (default), 'micro', 'macro', 'samples', 'weighted']
-            This parameter is required for multiclass/multilabel targets.
-            If `None`, the scores for each class are returned. Otherwise,
-            this determines the type of averaging performed on the data.
-
-    Returns:
-        Tuple containing lists of accuracies and F1 scores for each class.
-    """
     accuracies = []
     f1_scores = []
     gt_np = gt.cpu().numpy()
