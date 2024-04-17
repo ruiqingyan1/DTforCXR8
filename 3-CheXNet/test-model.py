@@ -49,11 +49,12 @@ def main():
     # 4、加载模型参数信息
     if os.path.isfile(CKPT_PATH):
         print("=> loading checkpoint")
-        # 这里没有用cuda，同时用了update_state_dict改了一些名字适配，你可能需要调整或者删除这个函数
         checkpoint = torch.load(CKPT_PATH, map_location=torch.device('cpu'))
-        new_state_dict = update_state_dict(model,checkpoint)
-        # 将新的state_dict加载到模型中
-        model.load_state_dict(new_state_dict)
+        model.load_state_dict(checkpoint)
+        # # 使用预训练好的模型参数进行测试
+        # checkpoint = torch.load(CKPT_PATH, map_location=torch.device('cpu'))
+        # new_state_dict = update_state_dict(model,checkpoint)
+        # model.load_state_dict(new_state_dict)
         print("=> loaded checkpoint")
     else:
         print("=> no checkpoint found")
