@@ -109,7 +109,7 @@ python train-kd3-model.py
 
 ### 3.3 实验结果，以AUC为例
 
-> The average AUROC is 0.837
+> The average AUROC is 0.838
 >
 > The AUROC of Atelectasis is 0.824
 >
@@ -123,6 +123,6 @@ python train-kd3-model.py
 
 ## 4、结果分析
 
-<img src="/Users/ruiqingyan/Library/Application Support/typora-user-images/image-20240417183241716.png" alt="image-20240417183241716" style="zoom:50%;" />
+<img src="./image-AUC.png" alt="image-20240417183241716" style="zoom:50%;" />
 
 ChestX-ray14数据集上不同模型的Mean AUC对比来看，在我们的实验中，通过对未蒸馏的基模型和蒸馏后的模型在ChestX-ray14数据集上的性能进行详细比较，我们发现CheXNet作为教师模型，EEEA-Net-C2作为学生模型的知识蒸馏策略表现最为出色。具体而言，未经蒸馏的CheXNet在所有基模型中展现了最高的AUC值（83.8%），表明其具有卓越的疾病分类能力。而在知识蒸馏后，采用CheXNet作为教师模型，EEEA-Net-C2作为学生模型进一步提升了性能，AUC值达到了83.8%，表现出了优化后的模型确实能够接近甚至超越未蒸馏模型的性能。这一结果不仅验证了知识蒸馏技术在提高轻量化模型性能中的有效性，同时也证明了CheXNet和EEEA-Net-C2组合的蒸馏策略在优化模型性能方面具有显著的优势。通过这种方法，我们成功地构建了一个既高效又紧凑的模型，为资源有限的医疗环境提供了一个强大的诊断工具，推动了医疗图像分析技术的应用和发展。此外，其他模型如OFA-595、Visformer-small和AutoFormerV2-base在蒸馏后也显示出了性能的提升，这进一步强调了蒸馏技术对于多种不同架构的模型都有益。
