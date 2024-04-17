@@ -51,7 +51,7 @@ kaggle提供了[CXR-resize-224的数据集](https://www.kaggle.com/datasets/khan
 
 ### 2.1 EEEA-Net-C2相关信息
 
-在1-EEEA-Net-C2文件夹内，运行para-test-eeeac2.py，可以看到模型的参数信息
+> 在1-EEEA-Net-C2文件夹内，运行para-test-eeeac2.py，可以看到模型的参数信息
 
 ```test
 统计模型 parameters 参数量，The total number of parameters: 4732838，4.732838M
