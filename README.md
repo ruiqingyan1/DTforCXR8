@@ -80,10 +80,16 @@ python test-model.py
 
 ### 2.4 实验结果，以AUC为例
 
-> The average AUROC is 0.823
-> The AUROC of Atelectasis is 0.807
-> The AUROC of Cardiomegaly is 0.881
-> The AUROC of Effusion is 0.789
+> The average AUROC is 0.802
+>
+> The AUROC of Atelectasis is 0.824643010142581
+>
+> The AUROC of Cardiomegaly is 0.9125871514054655
+>
+> The AUROC of Effusion is 0.8418948284084464
+>
+> The AUROC of Infiltration is 0.7223178820240355
+>
 > ...
 
 ## 3、蒸馏模型训练、测试（DT train&test）
@@ -109,11 +115,16 @@ python train-kd3-model.py
 
 ### 3.3 实验结果，以AUC为例
 
-> The average AUROC is 0.838
+> The average AUROC is 0.837
+>
 > The AUROC of Atelectasis is 0.823643010142581
+>
 > The AUROC of Cardiomegaly is 0.9155871514054655
+>
 > The AUROC of Effusion is 0.8858948284084464
+>
 > The AUROC of Infiltration is 0.7103178820240355
+>
 > ...
 
 ## 4、结果分析
